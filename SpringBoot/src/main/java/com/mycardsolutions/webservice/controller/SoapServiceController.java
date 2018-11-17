@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +20,7 @@ import com.mycardsolutions.webservice.service.SoapService;
 
 @RestController
 @RequestMapping(path = "/")
+
 public class SoapServiceController {
 
 	private static Logger logger = LoggerFactory.getLogger(SoapServiceController.class);
@@ -29,14 +29,17 @@ public class SoapServiceController {
 	public SoapService soapService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String home() {
-		return "Hello World";
+	public ResponseEntity<Map<String, Object>> home() {
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		resultMap.put("Data", "Hello World");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 	}
 	
 	@RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, Object>> saveCustomer(@RequestBody Customer customerNo) { //@RequestBody
-		logger.debug("Input Parameters: " + customerNo);
-		soapService.saveCustomer(customerNo.getCustomerNo());
+		logger.info("Input Parameters: " + customerNo);
+		soapService.saveCustomer(customerNo.getCustomer_no());
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("Result", "OK");
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
