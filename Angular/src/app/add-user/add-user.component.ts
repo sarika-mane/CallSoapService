@@ -14,6 +14,8 @@ export class AddUserComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private router: Router, private userService: UserService) { }
 
   addForm: FormGroup;
+  
+  myVar:any;
 
   testData:any;
 
@@ -41,9 +43,14 @@ export class AddUserComponent implements OnInit {
   onSubmit() {
     this.userService.createUser(this.addForm.value)
       .subscribe( data => {
-        this.router.navigate(['list-user']);
+        //this.router.navigate(['list-user']);
+		if(data["Result"]=="OK"){
+			this.myVar=data;
+		}
+				
+		this.myVar=data;
         alert("Data from post"+JSON.stringify(data));
-        console.log(data);
+        console.log(data["Result"]);
       });
   }
 
