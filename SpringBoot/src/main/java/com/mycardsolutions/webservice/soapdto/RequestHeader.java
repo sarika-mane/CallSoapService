@@ -8,28 +8,32 @@
 
 package com.mycardsolutions.webservice.soapdto;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAnyAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.namespace.QName;
 
 
 /**
- * <p>Java class for ServiceRequest complex type.
+ * <p>Java class for RequestHeader complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ServiceRequest"&gt;
+ * &lt;complexType name="RequestHeader"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="UserCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="Password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="WorkstationId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="MbrId" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
  *         &lt;element name="Language" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="BranchId" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
+ *       &lt;anyAttribute/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -38,25 +42,22 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ServiceRequest", propOrder = {
+@XmlRootElement
+@XmlType(name = "RequestHeader", namespace = "SWSharedTypes", propOrder = {
     "userCode",
-    "password",
-    "workstationId",
-    "language",
-    "branchId"
+    "mbrId",
+    "language"
 })
-public class ServiceRequest {
+public class RequestHeader {
 
     @XmlElement(name = "UserCode")
     protected String userCode;
-    @XmlElement(name = "Password")
-    protected String password;
-    @XmlElement(name = "WorkstationId")
-    protected String workstationId;
+    @XmlElement(name = "MbrId")
+    protected short mbrId;
     @XmlElement(name = "Language")
     protected String language;
-    @XmlElement(name = "BranchId")
-    protected int branchId;
+    @XmlAnyAttribute
+    private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
     /**
      * Gets the value of the userCode property.
@@ -83,51 +84,19 @@ public class ServiceRequest {
     }
 
     /**
-     * Gets the value of the password property.
+     * Gets the value of the mbrId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getPassword() {
-        return password;
+    public short getMbrId() {
+        return mbrId;
     }
 
     /**
-     * Sets the value of the password property.
+     * Sets the value of the mbrId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setPassword(String value) {
-        this.password = value;
-    }
-
-    /**
-     * Gets the value of the workstationId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getWorkstationId() {
-        return workstationId;
-    }
-
-    /**
-     * Sets the value of the workstationId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setWorkstationId(String value) {
-        this.workstationId = value;
+    public void setMbrId(short value) {
+        this.mbrId = value;
     }
 
     /**
@@ -155,19 +124,21 @@ public class ServiceRequest {
     }
 
     /**
-     * Gets the value of the branchId property.
+     * Gets a map that contains attributes that aren't bound to any typed property on this class.
      * 
-     */
-    public int getBranchId() {
-        return branchId;
-    }
-
-    /**
-     * Sets the value of the branchId property.
+     * <p>
+     * the map is keyed by the name of the attribute and 
+     * the value is the string value of the attribute.
      * 
+     * the map returned by this method is live, and you can add new attribute
+     * by updating the map directly. Because of this design, there's no setter.
+     * 
+     * 
+     * @return
+     *     always non-null
      */
-    public void setBranchId(int value) {
-        this.branchId = value;
+    public Map<QName, String> getOtherAttributes() {
+        return otherAttributes;
     }
 
 }

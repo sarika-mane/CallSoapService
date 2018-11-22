@@ -3,6 +3,9 @@ package com.mycardsolutions.webservice.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.namespace.QName;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +35,16 @@ public class SoapRepository {
 		custInfo.setCustomerNo(customerNo);
 		custInfo.setName("Mahesh");
 		custInfo.setSurname("Jadhav");
+		custInfo.setBirthDate("20000101");
+		custInfo.setPassportControlPeriod(7);
+		custInfo.setCustomerType("N");
+//		JAXBElement<Integer> element = new JAXBElement<Integer>(new QName(""), Integer.class, 444);
+//		custInfo.setPhoneWorkExtension(element);
+		custInfo.setMainBranchField(200);
 		newCustomer.setCustomer(custInfo);
 		
 		AdressInfo address = new AdressInfo();
+		address.setAdressIdx((short)1);
 		address.setAddress1("Mumbai");
 		
 		ArrayOfAdressInfo info = new ArrayOfAdressInfo();
