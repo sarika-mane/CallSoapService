@@ -1,11 +1,5 @@
 package com.mycardsolutions.webservice.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +25,22 @@ public class SoapRepository {
 		logger.info("Input Params: " + customerNo);
 		logger.info("Calling third party SOAP request here...");
 		CreateCustomer newCustomer = new CreateCustomer();
+		
 		CustomerInfo custInfo = new CustomerInfo();
-		custInfo.setCustomerNo(customerNo);
+		custInfo.setBankingCustomerNo(customerNo);
 		custInfo.setName("Mahesh");
 		custInfo.setSurname("Jadhav");
 		custInfo.setBirthDate("20000101");
 		custInfo.setPassportControlPeriod(7);
 		custInfo.setCustomerType("N");
-//		JAXBElement<Integer> element = new JAXBElement<Integer>(new QName(""), Integer.class, 444);
-//		custInfo.setPhoneWorkExtension(element);
+		
+//		JAXBElement<Integer> element = new JAXBElement<Integer>(new QName("PhoneWorkExtension","ns2"), Integer.class, 444);
+		custInfo.setPhoneWorkExtension(444);
 		custInfo.setMainBranchField(200);
+		custInfo.setMobileNo("9898989898");
+		custInfo.setCustomerGroup("c");
 		newCustomer.setCustomer(custInfo);
+		
 		
 		AdressInfo address = new AdressInfo();
 		address.setAdressIdx((short)1);

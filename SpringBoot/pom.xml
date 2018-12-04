@@ -85,18 +85,36 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- <plugin> <groupId>org.jvnet.jaxb2.maven2</groupId> <artifactId>maven-jaxb2-plugin</artifactId> 
-				<version>0.14.0</version> <executions> <execution> <goals> <goal>generate</goal> 
-				</goals> </execution> </executions> <configuration> <args> <arg>-XautoNameResolution</arg> 
-				</args> <schemaLanguage>WSDL</schemaLanguage> <schemaIncludes> <include>Integration.wsdl</include> 
-				</schemaIncludes> <schemas> <schema> <url>http://115.249.0.228:8090/Integration.asmx?wsdl</url> 
-				</schema> </schemas> <schemaDirectory>src/main/resources</schemaDirectory> 
-				<generatePackage>com.mycardsolutions.webservice.soapdto</generatePackage> 
-				<generateDirectory>src/main/java</generateDirectory> </configuration> </plugin> -->
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<args>
+						<arg>-XautoNameResolution</arg>
+					</args>
+					<schemaLanguage>WSDL</schemaLanguage>
+					<schemas>
+						<schema>
+							<url>http://115.249.0.228:8090/Integration.asmx?wsdl</url>
+						</schema>
+					</schemas>
+					<schemaDirectory>src/main/resources</schemaDirectory>
+					<generatePackage>com.mycardsolutions.webservice.soapdto</generatePackage>
+					<generateDirectory>src/main/java</generateDirectory>
+				</configuration>
+			</plugin> -->
 		</plugins>
 	</build>
 

@@ -10,6 +10,6 @@ public class SoapService {
 	public SoapRepository soapRepository;
 	
 	public void saveCustomer(String customerNo) {
-		soapRepository.createOrUpdateCustomer(customerNo);
+		soapRepository.createOrUpdateCustomer(customerNo.trim());
 	}
 }
