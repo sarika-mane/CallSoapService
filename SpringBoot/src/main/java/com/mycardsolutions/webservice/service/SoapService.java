@@ -12,4 +12,8 @@ public class SoapService {
 	public void saveCustomer(String customerNo) {
 		soapRepository.createOrUpdateCustomer(customerNo.trim());
 	}
+	
+	public void createCard(String customerNo) {
+		soapRepository.createOrUpdateCard(customerNo.trim());
+	}
 }

@@ -29,7 +29,7 @@ public class SecurityHeader implements WebServiceMessageCallback {
 
     @Override
     public void doWithMessage(WebServiceMessage message) throws IOException, TransformerException {
-    	((SoapMessage)message).setSoapAction("Smartsoft.Integration.Services/CreateCustomer");
+//    	((SoapMessage)message).setSoapAction("Smartsoft.Integration.Services/CreateCard");
     	
     	try {
     		

@@ -45,4 +45,14 @@ public class SoapServiceController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(path = "/CreateCard", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> createCard(@RequestBody Customer customerNo) { //@RequestBody
+		logger.info("Input Parameters: " + customerNo);
+		soapService.createCard(customerNo.getCustomer_no());
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
 }

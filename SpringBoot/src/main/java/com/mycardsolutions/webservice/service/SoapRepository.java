@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.mycardsolutions.webservice.soapdto.AdressInfo;
 import com.mycardsolutions.webservice.soapdto.ArrayOfAdressInfo;
+import com.mycardsolutions.webservice.soapdto.CardAllTransectionsResponse;
+import com.mycardsolutions.webservice.soapdto.CardRequest;
+import com.mycardsolutions.webservice.soapdto.CreateCard;
+import com.mycardsolutions.webservice.soapdto.CreateCardResponse;
 import com.mycardsolutions.webservice.soapdto.CreateCustomer;
 import com.mycardsolutions.webservice.soapdto.CreateCustomerResponse;
 import com.mycardsolutions.webservice.soapdto.CustomerInfo;
@@ -35,10 +39,10 @@ public class SoapRepository {
 		custInfo.setCustomerType("N");
 		
 //		JAXBElement<Integer> element = new JAXBElement<Integer>(new QName("PhoneWorkExtension","ns2"), Integer.class, 444);
-		custInfo.setPhoneWorkExtension(444);
+//		custInfo.setPhoneWorkExtension(444);
 		custInfo.setMainBranchField(200);
 		custInfo.setMobileNo("9898989898");
-		custInfo.setCustomerGroup("c");
+		custInfo.setCustomerGroup("C");
 		newCustomer.setCustomer(custInfo);
 		
 		
@@ -54,5 +58,37 @@ public class SoapRepository {
 		CreateCustomerResponse response = (CreateCustomerResponse)soapClient.callWebService(URL, newCustomer);
 		logger.info("Response Code: " + response.getCreateCustomerResult().getReturnCode());
 		logger.info("Response Desc: " + response.getCreateCustomerResult().getReturnDescription());
+	}
+	
+	public void createOrUpdateCard(String customerNo) {
+		logger.info("Input Params: " + customerNo);
+		logger.info("Calling third party SOAP request here...");
+		
+		CreateCard card= new CreateCard();
+		
+		CardRequest cardRequest=new CardRequest();
+		
+		cardRequest.setCustomerNo(customerNo);
+		cardRequest.setCardBranch(200);
+		cardRequest.setCardDeliveryBranch(200);
+		cardRequest.setPinDeliveryBranch(200);
+		cardRequest.setApplicationNo("4");
+		cardRequest.setProductId("44");
+		cardRequest.setCardPostIdx((short)1);
+		cardRequest.setPinPostIdx((short)1);
+		cardRequest.setFinancialType(44);
+		cardRequest.setNoCustomer(false);
+		cardRequest.setInstantFlag(false);
+		cardRequest.setIssuingFeeFlag(true);
+		cardRequest.setAnnualFeeFlag(true);
+		cardRequest.setCardLevel("M");
+		
+		
+		
+		card.setCardAllocationInfoDbt(cardRequest);
+		
+		CreateCardResponse response = (CreateCardResponse) soapClient.callCreateCardService(URL, card);
+		logger.info("Response Card No: " + response.getCreateCardResult().getCardNo());
+		logger.info("Response Card Desc: " + response.getCreateCardResult().getReturnDescription() );
 	}
 }
