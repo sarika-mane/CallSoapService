@@ -77,11 +77,13 @@ public class SoapRepository {
 		cardRequest.setCardPostIdx((short)1);
 		cardRequest.setPinPostIdx((short)1);
 		cardRequest.setFinancialType(44);
-		cardRequest.setNoCustomer(false);
+		cardRequest.setNoCustomer(true);
 		cardRequest.setInstantFlag(false);
 		cardRequest.setIssuingFeeFlag(true);
 		cardRequest.setAnnualFeeFlag(true);
 		cardRequest.setCardLevel("M");
+		cardRequest.setEmbossType("M");
+		cardRequest.setEmbossName1("Username");
 		
 		
 		
