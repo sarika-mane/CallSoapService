@@ -55,4 +55,14 @@ public class SoapServiceController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(path = "/SaveDebitBankAcc", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> saveDebitBankAcc(@RequestBody Customer customerNo) { //@RequestBody
+		logger.info("Input Parameters: " + customerNo);
+		soapService.saveDebitBankAcc(customerNo.getCustomer_no());
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
 }

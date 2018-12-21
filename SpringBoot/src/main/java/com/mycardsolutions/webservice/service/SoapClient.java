@@ -34,5 +34,14 @@ public class SoapClient extends WebServiceGatewaySupport {
     	return getWebServiceTemplate().marshalSendAndReceive(url, request,
                 new SecurityHeader(requestHeader));
     }
+    
+    public Object callSaveDebitBankAccService(String url, Object request) {
+    	RequestHeader requestHeader = new RequestHeader();
+    	requestHeader.setUserCode("SA");
+    	requestHeader.setMbrId((short) 1);
+    	requestHeader.setLanguage("EN");
+    	return getWebServiceTemplate().marshalSendAndReceive(url, request,
+                new SecurityHeader(requestHeader));
+    }
 
 }

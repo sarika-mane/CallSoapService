@@ -16,4 +16,8 @@ public class SoapService {
 	public void createCard(String customerNo) {
 		soapRepository.createOrUpdateCard(customerNo.trim());
 	}
+	
+	public void saveDebitBankAcc(String cardNo) {
+		soapRepository.saveDebitBankAccount(cardNo);
+	}
 }
