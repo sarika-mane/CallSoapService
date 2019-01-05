@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,4 +65,25 @@ public class SoapServiceController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(path = "/GetDebitBankAcc/{cardNo}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getDebitBankAcc(@PathVariable("cardNo") String cardNo) { //@RequestBody
+		logger.info("Input Parameters: " + cardNo);
+		soapService.getDebitBankAcc(cardNo);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/DeleteDbtBnkAcc/{cardNo}", method = RequestMethod.DELETE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> deleteDebitBankAcc(@PathVariable("cardNo") String cardNo) { //@RequestBody
+		logger.info("Input Parameters: " + cardNo);
+		soapService.deleteDebitBankAcc(cardNo);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
 }

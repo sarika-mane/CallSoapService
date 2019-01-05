@@ -20,4 +20,12 @@ public class SoapService {
 	public void saveDebitBankAcc(String cardNo) {
 		soapRepository.saveDebitBankAccount(cardNo);
 	}
+	
+	public void getDebitBankAcc(String cardNo) {
+		soapRepository.getDebitBankAcc(cardNo);
+	}
+	
+	public void deleteDebitBankAcc(String cardNo) {
+		soapRepository.deleteDbtBnkAcc(cardNo);
+	}
 }

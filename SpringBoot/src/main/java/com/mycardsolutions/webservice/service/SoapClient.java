@@ -9,14 +9,7 @@ import com.mycardsolutions.webservice.soapdto.RequestHeader;
 public class SoapClient extends WebServiceGatewaySupport {
  
     public Object callWebService(String url, Object request){
-        /*return getWebServiceTemplate().marshalSendAndReceive(url, request,
-                new WebServiceMessageCallback() {
-            public void doWithMessage(WebServiceMessage message) 
-            {
-                ((SoapMessage)message).setSoapAction("Smartsoft.Integration.Services/CreateCustomer");
-            }
-       });*/
-    	RequestHeader requestHeader = new RequestHeader();
+        RequestHeader requestHeader = new RequestHeader();
     	requestHeader.setUserCode("SA");
     	requestHeader.setMbrId((short) 1);
     	requestHeader.setLanguage("EN");
@@ -24,7 +17,7 @@ public class SoapClient extends WebServiceGatewaySupport {
                 new SecurityHeader(requestHeader));
        
     }
-    
+   //This seems to be repeated code if not replace calls of this method with above.
     public Object callCreateCardService(String url, Object request) {
     	
     	RequestHeader requestHeader = new RequestHeader();
@@ -35,13 +28,4 @@ public class SoapClient extends WebServiceGatewaySupport {
                 new SecurityHeader(requestHeader));
     }
     
-    public Object callSaveDebitBankAccService(String url, Object request) {
-    	RequestHeader requestHeader = new RequestHeader();
-    	requestHeader.setUserCode("SA");
-    	requestHeader.setMbrId((short) 1);
-    	requestHeader.setLanguage("EN");
-    	return getWebServiceTemplate().marshalSendAndReceive(url, request,
-                new SecurityHeader(requestHeader));
-    }
-
 }

@@ -23,87 +23,41 @@ public class SecurityHeader implements WebServiceMessageCallback {
 
 	private RequestHeader RequestHeader;
 
-    public SecurityHeader(RequestHeader authentication) {
-        this.RequestHeader = authentication;
-    }
+	public SecurityHeader(RequestHeader authentication) {
+		this.RequestHeader = authentication;
+	}
 
-    @Override
-    public void doWithMessage(WebServiceMessage message) throws IOException, TransformerException {
-//    	((SoapMessage)message).setSoapAction("Smartsoft.Integration.Services/CreateCard");
-    	
-    	try {
-    		
-    	SaajSoapMessage saajMessage = ((SaajSoapMessage)message);
-    	SOAPEnvelope envelope = saajMessage.getSaajMessage().getSOAPPart().getEnvelope();
-    	SOAPHeader header = saajMessage.getSaajMessage().getSOAPHeader();
-    	SOAPBody body = saajMessage.getSaajMessage().getSOAPBody();
-    	
-    	envelope.addNamespaceDeclaration("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-    	envelope.addNamespaceDeclaration("xsd", "http://www.w3.org/2001/XMLSchema");
-    	
-    	
-    	envelope.removeNamespaceDeclaration(envelope.getPrefix());
-    	envelope.setPrefix("soap");
-    	header.setPrefix("soap");
-    	
-    	
-    	body.setPrefix("soap");
-    	body.removeNamespaceDeclaration("ns3");
-    	
-    	
-    	SoapHeader soapHeader = ((SoapMessage)message).getSoapHeader();
-    	
-        
-            JAXBContext context = JAXBContext.newInstance(RequestHeader.class);
+	@Override
+	public void doWithMessage(WebServiceMessage message) throws IOException, TransformerException {
+		try {
 
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.marshal(RequestHeader, soapHeader.getResult());
+			SaajSoapMessage saajMessage = ((SaajSoapMessage) message);
+			SOAPEnvelope envelope = saajMessage.getSaajMessage().getSOAPPart().getEnvelope();
+			SOAPHeader header = saajMessage.getSaajMessage().getSOAPHeader();
+			SOAPBody body = saajMessage.getSaajMessage().getSOAPBody();
 
-        } catch (JAXBException e) {
-        	e.printStackTrace();
-            throw new IOException("error while marshalling authentication.");
-            
-        } catch (SOAPException e) {
-			// TODO Auto-generated catch block
+			envelope.addNamespaceDeclaration("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+			envelope.addNamespaceDeclaration("xsd", "http://www.w3.org/2001/XMLSchema");
+
+			envelope.removeNamespaceDeclaration(envelope.getPrefix());
+			envelope.setPrefix("soap");
+			header.setPrefix("soap");
+
+			body.setPrefix("soap");
+			body.removeNamespaceDeclaration("ns3");
+
+			SoapHeader soapHeader = ((SoapMessage) message).getSoapHeader();
+
+			JAXBContext context = JAXBContext.newInstance(RequestHeader.class);
+
+			Marshaller marshaller = context.createMarshaller();
+			marshaller.marshal(RequestHeader, soapHeader.getResult());
+
+		} catch (JAXBException | SOAPException e) {
 			e.printStackTrace();
-		}
-        
-//        SaajSoapMessage saajSoapMessage = (SaajSoapMessage)message;
-//		saajSoapMessage.setSoapAction("Smartsoft.Integration.Services/CreateCustomer");   		
-//		
-//		try {    		
-//    		SOAPMessage soapMessage = saajSoapMessage.getSaajMessage();
-//    		SOAPPart soapPart = soapMessage.getSOAPPart();
-//    		SOAPEnvelope envelope = soapPart.getEnvelope();
-//    		
-//    		
-//    		envelope.removeNamespaceDeclaration(envelope.getPrefix());
-//    		envelope.addNamespaceDeclaration("soap", 
-//    					"http://schemas.xmlsoap.org/soap/envelope/");
-//    		envelope.addNamespaceDeclaration("xsi", 
-//					"http://www.w3.org/2001/XMLSchema-instance");
-//    		envelope.addNamespaceDeclaration("xsd", 
-//					"http://www.w3.org/2001/XMLSchema");
-//    			
-//    		/*envelope.setPrefix("soap");   			
-//       		envelope.setPrefix("xsi");
-//       		envelope.setPrefix("xsd");*/
-//    		
-//    		/*AuthorizationHeader authHeader = 
-//    			bugzyMessage.getAuthorizationHeader(bugzyMessage.getUserName(), 
-//    					bugzyMessage.getPassword());    			
-//    		
-//    		header.addChildElement(authHeader.getSoapElement()); */
-//       		JAXBContext context = JAXBContext.newInstance(RequestHeader.class);
-//
-//            Marshaller marshaller = context.createMarshaller();
-//            SoapHeader soapHeader = ((SoapMessage)envelope).getSoapHeader();
-//            marshaller.marshal(requestHeader, soapHeader.getResult());
-//		}
-//		catch(SOAPException | JAXBException e) {
-//			e.printStackTrace();
-//            throw new IOException("error while marshalling authentication.");
-//		} 
-        
-    }
+			throw new IOException("error while marshalling authentication.");
+
+		} 
+
+	}
 }

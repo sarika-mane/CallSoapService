@@ -5,15 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mycardsolutions.webservice.soapdto.AdressInfo;
-import com.mycardsolutions.webservice.soapdto.ArrayOfAdressInfo;
-import com.mycardsolutions.webservice.soapdto.CardAllTransectionsResponse;
-import com.mycardsolutions.webservice.soapdto.CardRequest;
-import com.mycardsolutions.webservice.soapdto.CreateCard;
 import com.mycardsolutions.webservice.soapdto.CreateCardResponse;
-import com.mycardsolutions.webservice.soapdto.CreateCustomer;
 import com.mycardsolutions.webservice.soapdto.CreateCustomerResponse;
-import com.mycardsolutions.webservice.soapdto.CustomerInfo;
+import com.mycardsolutions.webservice.soapdto.DeleteDebitBankAccountResponse;
+import com.mycardsolutions.webservice.soapdto.GetDebitBankAccountResponse;
 import com.mycardsolutions.webservice.soapdto.SaveDebitBankAccountResponse;
 
 @Repository
@@ -55,4 +50,30 @@ public class SoapRepository {
 		logger.info("Response Return Desc: " + response.getSaveDebitBankAccountResult().getReturnDescription() );
 		
 	}
+	
+	public void getDebitBankAcc(String cardNo) {
+		
+		logger.info("Input Params: " + cardNo);
+		logger.info("Calling third party SOAP request here...");
+		
+		 GetDebitBankAccountResponse response =  (GetDebitBankAccountResponse) soapClient.callCreateCardService(URL, WebServiceFactory.getDebitBankAccObject(cardNo));
+		logger.info("Response Card No: " + response.getGetDebitBankAccountResult().getCardNo());
+		logger.info("Response Bank Branch: " + response.getGetDebitBankAccountResult().getBankAccountBranch() );
+		logger.info("Response Bank Acc No: " + response.getGetDebitBankAccountResult().getBankAccountNo() );
+		logger.info("Response Current Code: " + response.getGetDebitBankAccountResult().getBankAccountCurrCode() );
+		
+	}
+	
+	public void deleteDbtBnkAcc(String cardNo) {
+		logger.info("Input Params: " + cardNo);
+		logger.info("Calling third party SOAP request here...");
+		
+		 DeleteDebitBankAccountResponse response =   (DeleteDebitBankAccountResponse) soapClient.callCreateCardService(URL, WebServiceFactory.deleteDbtAccObject(cardNo));
+		logger.info("Response Return Code: " + response.getDeleteDebitBankAccountResult().getReturnCode());
+		logger.info("Response Error Detail: " + response.getDeleteDebitBankAccountResult().getErrorDetail());
+		logger.info("Response Retrun Description: " + response.getDeleteDebitBankAccountResult().getReturnDescription());
+		
+		
+	}
+	
 }

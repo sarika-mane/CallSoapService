@@ -7,6 +7,8 @@ import com.mycardsolutions.webservice.soapdto.CreateCard;
 import com.mycardsolutions.webservice.soapdto.CreateCustomer;
 import com.mycardsolutions.webservice.soapdto.CustomerInfo;
 import com.mycardsolutions.webservice.soapdto.DbtBankAccountInput;
+import com.mycardsolutions.webservice.soapdto.DeleteDebitBankAccount;
+import com.mycardsolutions.webservice.soapdto.GetDebitBankAccount;
 import com.mycardsolutions.webservice.soapdto.SaveDebitBankAccount;
 
 public class WebServiceFactory {
@@ -85,6 +87,33 @@ public class WebServiceFactory {
 		
 		return saveDebitBankAcc;
 		
+		
+	}
+	
+	public static GetDebitBankAccount getDebitBankAccObject(String cardNo) {
+		
+		GetDebitBankAccount dbtBnkAcc= new GetDebitBankAccount();
+		
+		dbtBnkAcc.setCardNo("6074187397891725");
+		dbtBnkAcc.setBankingCustomerNo("13828192");
+		
+		return dbtBnkAcc;
+	}
+	
+	public static DeleteDebitBankAccount deleteDbtAccObject(String cardNo) {
+		DeleteDebitBankAccount dltDbtAccObj = new DeleteDebitBankAccount();
+		
+		DbtBankAccountInput input = new DbtBankAccountInput();
+		input.setBankAccountBranch("2020");
+		input.setBankAccountCurrCode("356");
+		input.setBankAccountNo("6203982");
+		input.setBankAccountSuffix("1010");
+		input.setIsMainBankAccount("1");
+		input.setCardNo(cardNo);
+		
+		dltDbtAccObj.setInput(input);
+		
+		return dltDbtAccObj;
 		
 	}
 	
