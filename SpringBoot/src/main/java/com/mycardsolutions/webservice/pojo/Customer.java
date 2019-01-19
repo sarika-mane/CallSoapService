@@ -11,8 +11,4 @@ public class Customer {
 	public void setCustomer_no(String customer_no) {
 		this.customer_no = customer_no;
 	}
-
-	
-	
-	
 }
