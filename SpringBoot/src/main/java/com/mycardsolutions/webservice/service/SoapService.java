@@ -1,7 +1,6 @@
 package com.mycardsolutions.webservice.service;
 
-import com.mycardsolutions.webservice.soapdto.GetCityList;
-import com.mycardsolutions.webservice.soapdto.GetCityListResponse;
+import com.mycardsolutions.webservice.soapdto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,5 +70,16 @@ public class SoapService {
     public GetCityListResponse getCities(GetCityList getCityList) {
         GetCityListResponse cities = soapRepository.getCities(getCityList);
         return cities;
+    }
+
+    public CardStatControlRspResponse getCardStatusControl(CardStatControlRspResponse cardStatControlRsp) {
+        CardStatControlRspResponse cardStatControl = soapRepository.getCardStatControl(cardStatControlRsp);
+        return cardStatControl;
+    }
+
+    public Boolean isCardVerified(CardVerificationResp cardVerificationResp) {
+        Boolean cardVerified = soapRepository.isCardVerified(
+                cardVerificationResp);
+        return cardVerified;
     }
 }

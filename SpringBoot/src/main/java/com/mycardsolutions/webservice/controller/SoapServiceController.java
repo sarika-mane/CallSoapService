@@ -3,8 +3,7 @@ package com.mycardsolutions.webservice.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.mycardsolutions.webservice.soapdto.GetCityList;
-import com.mycardsolutions.webservice.soapdto.GetCityListResponse;
+import com.mycardsolutions.webservice.soapdto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -179,8 +178,38 @@ public class SoapServiceController {
 
     }
 
+    /**
+     * kemblekaran
+     *
+     * @param getCityList
+     * @return GetCityListResponse object which contains city list with status code
+     */
     @RequestMapping(path = "/GetCityList", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public GetCityListResponse getCities(@RequestBody GetCityList getCityList) {
         return soapService.getCities(getCityList);
+    }
+
+    /**
+     * throws error => Unable to handle request without a valid action parameter. Please supply a valid soap action.
+     * kemblekaran
+     *
+     * @param cardStatControlRsp
+     * @return CardStatControlRsp
+     */
+    @RequestMapping(path = "/CardStatControl", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public CardStatControlRspResponse getCardStatusControl(@RequestBody CardStatControlRspResponse cardStatControlRsp) {
+        return soapService.getCardStatusControl(cardStatControlRsp);
+    }
+
+    /**
+     * returns response as ERROR => Card Number Not Found
+     * kemblekaran
+     *
+     * @param cardVerificationResp
+     * @return if card is verified or not
+     */
+    @RequestMapping(path = "/CardVerification", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Boolean cardVerfication(@RequestBody CardVerificationResp cardVerificationResp) {
+        return soapService.isCardVerified(cardVerificationResp);
     }
 }

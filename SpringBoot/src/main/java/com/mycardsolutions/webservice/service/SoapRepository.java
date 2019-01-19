@@ -178,4 +178,15 @@ public class SoapRepository {
         return cityListResponse;
     }
 
+    public CardStatControlRspResponse getCardStatControl(CardStatControlRspResponse cardStatControlRsp) {
+        soapClient.callWebService(
+                URL,
+                cardStatControlRsp);
+        return null;
+    }
+
+    public Boolean isCardVerified(CardVerificationResp cardVerificationResp) {
+        soapClient.callWebService(URL, cardVerificationResp);
+        return true;
+    }
 }
