@@ -28,4 +28,40 @@ public class SoapService {
 	public void deleteDebitBankAcc(String cardNo) {
 		soapRepository.deleteDbtBnkAcc(cardNo);
 	}
+
+	public void getCardInfo(String cardNo) {
+		soapRepository.getCardInfo(cardNo);
+	}
+	
+	public void getCardAllBalanceAndLimit(String cardNo) {
+		soapRepository.getCardAllLimitAndBalance(cardNo);
+	}
+	
+	public void getCustomer(String customerNo) {
+		soapRepository.getCustomer(customerNo);;
+	}
+	
+	public void getCustomerCardInfo(String cardNo) {
+		soapRepository.getCustomerCardInfo(cardNo);
+	}
+	
+	public void getCardStatus() {
+		soapRepository.getCardStatus();
+	}
+	
+	public void getProducts() {
+		soapRepository.getProducts();
+	}
+	
+	public void getTxnDef() {
+		soapRepository.getTxnDef();
+	}
+	
+	public void updateCustomer(String customerNo) {
+		soapRepository.updateCustomer(customerNo);
+	}
+	
+	public void getLogoCodes() {
+		soapRepository.getLogoCodes();
+	}
 }

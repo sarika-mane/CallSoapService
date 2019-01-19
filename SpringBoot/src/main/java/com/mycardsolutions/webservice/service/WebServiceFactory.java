@@ -2,14 +2,24 @@ package com.mycardsolutions.webservice.service;
 
 import com.mycardsolutions.webservice.soapdto.AdressInfo;
 import com.mycardsolutions.webservice.soapdto.ArrayOfAdressInfo;
+import com.mycardsolutions.webservice.soapdto.CardDci;
 import com.mycardsolutions.webservice.soapdto.CardRequest;
 import com.mycardsolutions.webservice.soapdto.CreateCard;
 import com.mycardsolutions.webservice.soapdto.CreateCustomer;
 import com.mycardsolutions.webservice.soapdto.CustomerInfo;
 import com.mycardsolutions.webservice.soapdto.DbtBankAccountInput;
 import com.mycardsolutions.webservice.soapdto.DeleteDebitBankAccount;
+import com.mycardsolutions.webservice.soapdto.GetCardAllLimitAndBalanceInfo;
+import com.mycardsolutions.webservice.soapdto.GetCardStatus;
+import com.mycardsolutions.webservice.soapdto.GetCustomer;
+import com.mycardsolutions.webservice.soapdto.GetCustomerCardInfo;
 import com.mycardsolutions.webservice.soapdto.GetDebitBankAccount;
+import com.mycardsolutions.webservice.soapdto.GetLogoCodes;
+import com.mycardsolutions.webservice.soapdto.GetProducts;
+import com.mycardsolutions.webservice.soapdto.GetTxnDefProcess;
+import com.mycardsolutions.webservice.soapdto.SWGetCardInfoResponse;
 import com.mycardsolutions.webservice.soapdto.SaveDebitBankAccount;
+import com.mycardsolutions.webservice.soapdto.UpdateCustomer;
 
 public class WebServiceFactory {
 
@@ -116,5 +126,84 @@ public class WebServiceFactory {
 		return dltDbtAccObj;
 		
 	}
+	
+	public static SWGetCardInfoResponse getCardInfoObject(String cardNo) {
+		
+		SWGetCardInfoResponse cardInfoResponse = new SWGetCardInfoResponse();
+		cardInfoResponse.setCustomerNo("10206");
+		cardInfoResponse.setCardNo("607418vdkttn2369");
+//		cardInfoResponse.setBarcodeNo("");
+		cardInfoResponse.setCardDci(CardDci.DEBIT);
+//		cardInfoResponse.setCustomerGSMNo("");
+//		cardInfoResponse.setCustomerName("");
+//		cardInfoResponse.setCustomerMidleName("");
+//		cardInfoResponse.setCustomerSurname("");
+//		
+		return cardInfoResponse;
+		
+		
+	}
+	
+	public static GetCardAllLimitAndBalanceInfo getCardLimitAndBalanceObj(String cardNo) {
+		
+		GetCardAllLimitAndBalanceInfo cardLimitAndBalanceInfo= new GetCardAllLimitAndBalanceInfo();
+		cardLimitAndBalanceInfo.setCardNo(cardNo);
+		cardLimitAndBalanceInfo.setLimitType("S");
+		
+		return cardLimitAndBalanceInfo;
+		
+	}
+	
+	public static GetCustomer getCustomer(String customerNo) {
+		GetCustomer customer= new GetCustomer();
+		customer.setCustomerNo(customerNo);
+		return customer;
+	}
+	
+	public static GetCustomerCardInfo getCustomerCardInfo(String cardNo) {
+		GetCustomerCardInfo object = new GetCustomerCardInfo();
+		object.setCardNo(cardNo);
+		object.setBankingCustomerno("9109090");
+		return object;
+	}
+	
+	public static GetCardStatus getCardStatus() {
+		GetCardStatus status = new GetCardStatus();
+		return status;
+	}
+	
+	public static GetProducts getProducts() {
+		GetProducts products=new GetProducts();
+		return products;
+	}
+	
+	public static GetTxnDefProcess getTxnDef() {
+		GetTxnDefProcess process =  new GetTxnDefProcess();
+		return process;
+	}
+	
+	public static UpdateCustomer getUpdateCustomer(String customerNo) {
+		UpdateCustomer updateCustomer = new UpdateCustomer();
+		CustomerInfo customerInfo= new CustomerInfo();
+		customerInfo.setName("A");
+		customerInfo.setMidName("B");
+		customerInfo.setSurname("C");
+		customerInfo.setBirthDate("19910202");
+		customerInfo.setCustomerType("N");
+		customerInfo.setCustomerGroup("C");
+		updateCustomer.setCustomer(customerInfo);
+		return updateCustomer;
+		
+	}
+	
+	public static GetLogoCodes getLogoCodes() {
+		return new GetLogoCodes();
+	}
+	
+	
+	
+//	public static GetDebitBankAccount getDebitBankAccountObject(String ) {
+//		
+//	}
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +67,7 @@ public class SoapServiceController {
 
 	}
 	
-	@RequestMapping(path = "/GetDebitBankAcc/{cardNo}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(path = "/GetDebitBankAcc/{cardNo}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, Object>> getDebitBankAcc(@PathVariable("cardNo") String cardNo) { //@RequestBody
 		logger.info("Input Parameters: " + cardNo);
 		soapService.getDebitBankAcc(cardNo);
@@ -86,4 +87,94 @@ public class SoapServiceController {
 
 	}
 	
+
+	@RequestMapping(path = "/GetCardInfo/{cardNo}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getCardInfo( @PathVariable String cardNo) { //@RequestBody
+		logger.info("Input Parameters: " + cardNo);
+		soapService.getCardInfo(cardNo);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/GetCardAllBalanceAndLimit/{cardNo}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getCardAllBalanceAndLimit( @PathVariable String cardNo) { //@RequestBody
+		logger.info("Input Parameters: " + cardNo);
+		soapService.getCardAllBalanceAndLimit(cardNo);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/GetCustomer/{customerNo}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getCustomer( @PathVariable String customerNo) { //@RequestBody
+		logger.info("Input Parameters: " + customerNo);
+		soapService.getCustomer(customerNo);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/GetCustomerCardInfo/{cardNo}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getCustomerCardInfo( @PathVariable String cardNo) { //@RequestBody
+		logger.info("Input Parameters: " + cardNo);
+		soapService.getCustomerCardInfo(cardNo);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/GetCardStatus", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getCardStatus() { //@RequestBody
+		//logger.info("Input Parameters: " + cardNo);
+		soapService.getCardStatus();
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/GetProducts", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getProducts(){ //@RequestBody
+		//logger.info("Input Parameters: " + cardNo);
+		soapService.getProducts();
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/GetTxnDef", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getTxnDef(){ //@RequestBody
+		//logger.info("Input Parameters: " + cardNo);
+		soapService.getTxnDef();
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/UpdateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getProducts(@RequestBody Customer customer){ //@RequestBody
+		logger.info("Input Parameters: " + customer);
+		soapService.updateCustomer(customer.getCustomer_no());
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(path = "/GetLogoCodes", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> getLogoCodes(){ //@RequestBody
+		//logger.info("Input Parameters: " + cardNo);
+		soapService.getLogoCodes();
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("Result", "OK");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+	}
 }
