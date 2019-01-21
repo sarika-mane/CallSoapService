@@ -181,6 +181,17 @@ public class SoapServiceController {
     /**
      * kemblekaran
      *
+     * @param getStateList
+     * @return GetStateListResponse object which contains state list with status code
+     */
+    @RequestMapping(path = "/GetStateList", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public GetStateListResponse getStates(@RequestBody GetStateList getStateList) {
+        return soapService.getState(getStateList);
+    }
+
+    /**
+     * kemblekaran
+     *
      * @param getCityList
      * @return GetCityListResponse object which contains city list with status code
      */
@@ -190,14 +201,14 @@ public class SoapServiceController {
     }
 
     /**
-     * throws error => Unable to handle request without a valid action parameter. Please supply a valid soap action.
+     * response => Card Number Not Found
      * kemblekaran
      *
      * @param cardStatControlRsp
      * @return CardStatControlRsp
      */
     @RequestMapping(path = "/CardStatControl", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public CardStatControlRspResponse getCardStatusControl(@RequestBody CardStatControlRspResponse cardStatControlRsp) {
+    public Object getCardStatusControl(@RequestBody CardStatControlRsp cardStatControlRsp) {
         return soapService.getCardStatusControl(cardStatControlRsp);
     }
 
@@ -206,10 +217,25 @@ public class SoapServiceController {
      * kemblekaran
      *
      * @param cardVerificationResp
-     * @return if card is verified or not
+     * @return if response object
      */
     @RequestMapping(path = "/CardVerification", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Boolean cardVerfication(@RequestBody CardVerificationResp cardVerificationResp) {
+    public Object cardVerfication(@RequestBody CardVerificationResp cardVerificationResp) {
         return soapService.isCardVerified(cardVerificationResp);
+    }
+
+    @RequestMapping(path = "/ControlEOD", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object controlEOD() {
+        return soapService.controlEOD();
+    }
+
+    @RequestMapping(path = "/TokenCardNumber", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object tokenCardNumber(@RequestBody DeTokenCardNumber deTokenCardNumber) {
+        return soapService.tokenCardNumber(deTokenCardNumber);
+    }
+
+    @RequestMapping(path = "/CardRenewal", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object cardRenewal(@RequestBody CardRenewalProcess cardRenewalProcess) {
+        return soapService.cardRenewal(cardRenewalProcess);
     }
 }

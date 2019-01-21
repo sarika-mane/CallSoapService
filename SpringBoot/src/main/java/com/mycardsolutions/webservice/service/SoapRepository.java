@@ -178,15 +178,27 @@ public class SoapRepository {
         return cityListResponse;
     }
 
-    public CardStatControlRspResponse getCardStatControl(CardStatControlRspResponse cardStatControlRsp) {
-        soapClient.callWebService(
-                URL,
-                cardStatControlRsp);
-        return null;
+    public Object getCardStatControl(CardStatControlRsp cardStatControlRsp) {
+        return soapClient.callWebService(URL, cardStatControlRsp);
     }
 
-    public Boolean isCardVerified(CardVerificationResp cardVerificationResp) {
-        soapClient.callWebService(URL, cardVerificationResp);
-        return true;
+    public Object isCardVerified(CardVerificationResp cardVerificationResp) {
+        return soapClient.callWebService(URL, cardVerificationResp);
+    }
+
+    public Object controlEOD() {
+        return soapClient.callWebService(URL, new ControlEOD());
+    }
+
+    public Object tokenCardNumber(DeTokenCardNumber deTokenCardNumber) {
+        return soapClient.callWebService(URL, deTokenCardNumber);
+    }
+
+    public Object cardRenewal(CardRenewalProcess cardRenewalProcess) {
+        return soapClient.callWebService(URL, cardRenewalProcess);
+    }
+
+    public GetStateListResponse getStates(GetStateList getStateList) {
+        return (GetStateListResponse) soapClient.callWebService(URL, getStateList);
     }
 }
