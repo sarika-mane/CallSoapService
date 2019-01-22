@@ -201,4 +201,8 @@ public class SoapRepository {
     public GetStateListResponse getStates(GetStateList getStateList) {
         return (GetStateListResponse) soapClient.callWebService(URL, getStateList);
     }
+
+    public CreateCustomerResponse createCustomer(CreateCustomer createCustomer) {
+        return (CreateCustomerResponse) soapClient.callWebService(URL, createCustomer);
+    }
 }

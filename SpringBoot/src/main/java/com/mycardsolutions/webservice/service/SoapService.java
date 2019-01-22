@@ -95,4 +95,8 @@ public class SoapService {
     public GetStateListResponse getState(GetStateList getStateList) {
         return soapRepository.getStates(getStateList);
     }
+
+    public Object createCustomer(CreateCustomer createCustomer) {
+        return soapRepository.createCustomer(createCustomer);
+    }
 }

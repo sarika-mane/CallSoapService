@@ -37,15 +37,15 @@ public class SoapServiceController {
         return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
     }
 
-    @RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> saveCustomer(@RequestBody Customer customerNo) { //@RequestBody
-        logger.info("Input Parameters: " + customerNo);
-        soapService.saveCustomer(customerNo.getCustomer_no());
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("Result", "OK");
-        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
-
-    }
+//    @RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Map<String, Object>> saveCustomer(@RequestBody Customer customerNo) { //@RequestBody
+//        logger.info("Input Parameters: " + customerNo);
+//        soapService.saveCustomer(customerNo.getCustomer_no());
+//        Map<String, Object> resultMap = new HashMap<>();
+//        resultMap.put("Result", "OK");
+//        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+//
+//    }
 
     @RequestMapping(path = "/CreateCard", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> createCard(@RequestBody Customer customerNo) { //@RequestBody
@@ -168,7 +168,7 @@ public class SoapServiceController {
 
     }
 
-    @RequestMapping(path = "/GetLogoCodes", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/GetLogoCodes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> getLogoCodes() { //@RequestBody
         //logger.info("Input Parameters: " + cardNo);
         soapService.getLogoCodes();
@@ -184,7 +184,7 @@ public class SoapServiceController {
      * @param getStateList
      * @return GetStateListResponse object which contains state list with status code
      */
-    @RequestMapping(path = "/GetStateList", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/GetStateList", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public GetStateListResponse getStates(@RequestBody GetStateList getStateList) {
         return soapService.getState(getStateList);
     }
@@ -195,7 +195,7 @@ public class SoapServiceController {
      * @param getCityList
      * @return GetCityListResponse object which contains city list with status code
      */
-    @RequestMapping(path = "/GetCityList", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/GetCityList", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public GetCityListResponse getCities(@RequestBody GetCityList getCityList) {
         return soapService.getCities(getCityList);
     }
@@ -237,5 +237,10 @@ public class SoapServiceController {
     @RequestMapping(path = "/CardRenewal", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Object cardRenewal(@RequestBody CardRenewalProcess cardRenewalProcess) {
         return soapService.cardRenewal(cardRenewalProcess);
+    }
+
+    @RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object createCustomer(@RequestBody CreateCustomer createCustomer){
+        return soapService.createCustomer(createCustomer);
     }
 }
