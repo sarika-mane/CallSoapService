@@ -37,15 +37,15 @@ public class SoapServiceController {
         return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
     }
 
-//    @RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Map<String, Object>> saveCustomer(@RequestBody Customer customerNo) { //@RequestBody
-//        logger.info("Input Parameters: " + customerNo);
-//        soapService.saveCustomer(customerNo.getCustomer_no());
-//        Map<String, Object> resultMap = new HashMap<>();
-//        resultMap.put("Result", "OK");
-//        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
-//
-//    }
+    @RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> saveCustomer(@RequestBody Customer customerNo) { //@RequestBody
+        logger.info("Input Parameters: " + customerNo);
+        soapService.saveCustomer(customerNo.getCustomer_no());
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("Result", "OK");
+        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+
+    }
 
     @RequestMapping(path = "/CreateCard", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> createCard(@RequestBody Customer customerNo) { //@RequestBody
@@ -219,7 +219,7 @@ public class SoapServiceController {
      * @param cardVerificationResp
      * @return if response object
      */
-    @RequestMapping(path = "/CardVerification", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/CardVerification", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Object cardVerfication(@RequestBody CardVerificationResp cardVerificationResp) {
         return soapService.isCardVerified(cardVerificationResp);
     }
@@ -239,8 +239,16 @@ public class SoapServiceController {
         return soapService.cardRenewal(cardRenewalProcess);
     }
 
-    @RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object createCustomer(@RequestBody CreateCustomer createCustomer){
-        return soapService.createCustomer(createCustomer);
+//    @RequestMapping(path = "/CreateCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Object createCustomer(@RequestBody CreateCustomer createCustomer){
+//        return soapService.createCustomer(createCustomer);
+//    }
+    
+    @RequestMapping(path = "/UpdateCardStatus", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object createCustomer(@RequestBody Customer createCustomer){
+         soapService.updateCardStatus(createCustomer.getCustomer_no());
+         Map<String, Object> resultMap = new HashMap<>();
+         resultMap.put("Result", "OK");
+         return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
     }
 }

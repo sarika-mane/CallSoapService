@@ -205,4 +205,15 @@ public class SoapRepository {
     public CreateCustomerResponse createCustomer(CreateCustomer createCustomer) {
         return (CreateCustomerResponse) soapClient.callWebService(URL, createCustomer);
     }
+    
+    public void updateCardStatus(String cardNo) {
+
+        //logger.info("Input Params: " + cardNo);
+        logger.info("Calling third party SOAP request here...");
+
+        UpdateCardStatusResponse response = (UpdateCardStatusResponse) soapClient.callCreateCardService(URL, WebServiceFactory.updateCardStatus(cardNo));
+        logger.info("Response Retrun Result: " + response.getUpdateCardStatusResult().getResult());
+//		logger.info("Response Return Object: " + response.getGetCardAllLimitAndBalanceInfoResult().getLimitDetailList().toString());
+
+    }
 }

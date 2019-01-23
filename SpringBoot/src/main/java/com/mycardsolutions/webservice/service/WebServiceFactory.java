@@ -9,15 +9,15 @@ public class WebServiceFactory {
 
         CustomerInfo custInfo = new CustomerInfo();
         custInfo.setBankingCustomerNo(customerNo);
-        custInfo.setName("Mahesh");
-        custInfo.setSurname("Jadhav");
+        custInfo.setName("mahesh");
+        custInfo.setSurname("ravi");
         custInfo.setBirthDate("20000101");
         custInfo.setPassportControlPeriod(7);
         custInfo.setCustomerType("N");
 
 //		
         custInfo.setMainBranchField(200);
-        custInfo.setMobileNo("9898989898");
+        custInfo.setMobileNo("9898789898");
         custInfo.setCustomerGroup("C");
         newCustomer.setCustomer(custInfo);
 
@@ -42,18 +42,23 @@ public class WebServiceFactory {
         cardRequest.setCardBranch(200);
         cardRequest.setCardDeliveryBranch(200);
         cardRequest.setPinDeliveryBranch(200);
-        cardRequest.setApplicationNo("4");
+        cardRequest.setApplicationNo("7");
         cardRequest.setProductId("44");
         cardRequest.setCardPostIdx((short) 1);
         cardRequest.setPinPostIdx((short) 1);
         cardRequest.setFinancialType(44);
-        cardRequest.setNoCustomer(true);
+        cardRequest.setNoCustomer(false);
         cardRequest.setInstantFlag(false);
         cardRequest.setIssuingFeeFlag(true);
         cardRequest.setAnnualFeeFlag(true);
         cardRequest.setCardLevel("M");
         cardRequest.setEmbossType("M");
-        cardRequest.setEmbossName1("Username");
+        cardRequest.setEmbossName1("tester");
+        cardRequest.setBankAccountBranch("2020");
+        cardRequest.setBankAccountNo("602100000038111");
+        cardRequest.setBankAccountSuffix("1010");
+        cardRequest.setBankAccountCurrCode("356");
+        cardRequest.setIsMainBankAccount("1");
 
         card.setCardAllocationInfoDbt(cardRequest);
 
@@ -191,6 +196,17 @@ public class WebServiceFactory {
         getCityList.setStateCode(String.valueOf(stateCode));
         getCityList.setCountryCode(countryCode);
         return getCityList;
+    }
+    
+    public static UpdateCardStatus updateCardStatus(String cardNo) {
+    	UpdateCardStatus status=new UpdateCardStatus();
+    	status.setEmbossFlag(false);
+    	status.setStatus("G");
+    	status.setSubStatus("V");
+    	status.setCardNo(cardNo);
+    	//status.set
+    	return status;
+    	
     }
 
 }

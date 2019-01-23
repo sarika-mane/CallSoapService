@@ -99,4 +99,8 @@ public class SoapService {
     public Object createCustomer(CreateCustomer createCustomer) {
         return soapRepository.createCustomer(createCustomer);
     }
+    
+    public void updateCardStatus(String cardNo) {
+    	soapRepository.updateCardStatus(cardNo);
+    }
 }
