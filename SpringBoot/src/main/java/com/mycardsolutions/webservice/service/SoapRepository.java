@@ -190,8 +190,12 @@ public class SoapRepository {
         return soapClient.callWebService(URL, new ControlEOD());
     }
 
-    public Object tokenCardNumber(DeTokenCardNumber deTokenCardNumber) {
+    public Object deTokenCardNumber(DeTokenCardNumber deTokenCardNumber) {
         return soapClient.callWebService(URL, deTokenCardNumber);
+    }
+    
+    public Object tokenCardNumber(TokenCardNumber tokenCardNumber) {
+        return soapClient.callWebService(URL, tokenCardNumber);
     }
 
     public Object cardRenewal(CardRenewalProcess cardRenewalProcess) {

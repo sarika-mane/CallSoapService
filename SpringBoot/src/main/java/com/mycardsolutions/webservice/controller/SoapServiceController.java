@@ -207,7 +207,7 @@ public class SoapServiceController {
      * @param cardStatControlRsp
      * @return CardStatControlRsp
      */
-    @RequestMapping(path = "/CardStatControl", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/CardStatControl", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Object getCardStatusControl(@RequestBody CardStatControlRsp cardStatControlRsp) {
         return soapService.getCardStatusControl(cardStatControlRsp);
     }
@@ -229,8 +229,14 @@ public class SoapServiceController {
         return soapService.controlEOD();
     }
 
-    @RequestMapping(path = "/TokenCardNumber", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object tokenCardNumber(@RequestBody DeTokenCardNumber deTokenCardNumber) {
+    @RequestMapping(path = "/DeTokenCardNumber", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object deTokenCardNumber(@RequestBody DeTokenCardNumber deTokenCardNumber) {
+    	
+        return soapService.deTokenCardNumber(deTokenCardNumber);
+    }
+    
+    @RequestMapping(path = "/TokenCardNumber", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object tokenCardNumber(@RequestBody TokenCardNumber deTokenCardNumber) {
         return soapService.tokenCardNumber(deTokenCardNumber);
     }
 

@@ -90,8 +90,8 @@ public class WebServiceFactory {
 
         GetDebitBankAccount dbtBnkAcc = new GetDebitBankAccount();
 
-        dbtBnkAcc.setCardNo("6074187397891725");
-        dbtBnkAcc.setBankingCustomerNo("13828192");
+        dbtBnkAcc.setCardNo(cardNo);
+        dbtBnkAcc.setBankingCustomerNo("74747474");
 
         return dbtBnkAcc;
     }
@@ -134,7 +134,7 @@ public class WebServiceFactory {
 
         GetCardAllLimitAndBalanceInfo cardLimitAndBalanceInfo = new GetCardAllLimitAndBalanceInfo();
         cardLimitAndBalanceInfo.setCardNo(cardNo);
-        cardLimitAndBalanceInfo.setLimitType("S");
+        cardLimitAndBalanceInfo.setLimitType("T");
 
         return cardLimitAndBalanceInfo;
 
@@ -204,6 +204,8 @@ public class WebServiceFactory {
     	status.setStatus("G");
     	status.setSubStatus("V");
     	status.setCardNo(cardNo);
+    	status.setFinancialType((short)44);
+    	status.setDeliveryBranch(200);
     	//status.set
     	return status;
     	

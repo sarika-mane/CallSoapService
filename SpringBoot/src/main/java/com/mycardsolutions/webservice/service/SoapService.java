@@ -84,8 +84,12 @@ public class SoapService {
         return soapRepository.controlEOD();
     }
 
-    public Object tokenCardNumber(DeTokenCardNumber deTokenCardNumber) {
-        return soapRepository.tokenCardNumber(deTokenCardNumber);
+    public Object deTokenCardNumber(DeTokenCardNumber deTokenCardNumber) {
+        return soapRepository.deTokenCardNumber(deTokenCardNumber);
+    }
+    
+    public Object tokenCardNumber(TokenCardNumber tokenCardNumber) {
+        return soapRepository.tokenCardNumber(tokenCardNumber);
     }
 
     public Object cardRenewal(CardRenewalProcess cardRenewalProcess) {
